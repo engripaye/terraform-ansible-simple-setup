@@ -1,0 +1,15 @@
+- name: Setup web server
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy index.html
+      copy:
+        src: ../index.html
+        dest: /var/www/html/index.html
